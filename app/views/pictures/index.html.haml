@@ -1,2 +1,9 @@
-- @picture.each do |picture|
-  %h2= link_to picture.title, picture
+#pictures.transitions-enabled
+  - @picture.each do |picture|
+    .box.panel.panel-default
+      = link_to (image_tag picture.image.url), picture
+      .panel-body
+        %h2= link_to picture.title, picture
+        %p.user
+        Submitted by
+        = picture.user.email
