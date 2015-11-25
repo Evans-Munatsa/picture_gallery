@@ -20,5 +20,6 @@
               = link_to like_picture_path(@picture), method: :put, class: 'btn btn-default' do
                 %span.glyphicon.glyphicon-heart
                   = @picture.get_upvotes.size
-              = link_to  'Edit', edit_picture_path, class: 'btn btn-default'
-              = link_to  'Delete', picture_path, method: :delete, data: { confirm: 'Are you sure'}, class: 'btn btn-default'
+              - if user_signed_in?
+                = link_to  'Edit', edit_picture_path, class: 'btn btn-default'
+                = link_to  'Delete', picture_path, method: :delete, data: { confirm: 'Are you sure'}, class: 'btn btn-default'
