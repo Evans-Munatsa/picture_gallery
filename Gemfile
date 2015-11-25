@@ -10,6 +10,7 @@ gem "paperclip", "~> 4.3"
 gem 'haml', '~> 4.0.5'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'masonry-rails'
+gem 'acts_as_votable', '~> 0.10.0'
 gem 'simple_form'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
