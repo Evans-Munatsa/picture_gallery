@@ -23,7 +23,15 @@
           %li= link_to 'Sign In', new_user_session_path
 
   .container
-    - flash.each do |name, msg|
-      = content_tag :div, msg, class: 'alert alert-info'
+    .row
+      .col-md-8
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class: 'alert alert-info'
 
-    = yield
+        = yield
+      .col-md-4
+        %ul
+          %li= link_to 'All foods', root_path, class: 'list-group-item'
+
+          - Menu.all.each do |menu|
+            %li= link_to menu.name, pictures_path(menu: menu.name), class: 'list-group-item'
