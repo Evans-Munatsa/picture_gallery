@@ -2,7 +2,12 @@ class PicturesController < ApplicationController
   before_action :find_picture, only: [:show, :edit, :update, :destroy, :upvote]
 
   def index
-    @picture = Picture.all.order('created_at DESC')
+    if params[:menu].blank?
+      @picture = Picture.all.order('created_at DESC')
+    else
+      @menu_id = Menu.find_by(name: params[:menu]).id
+      @picture = Picture.where(menu_id: @menu_id).order("created_at DESC")
+    end
   end
 
   def new
@@ -34,8 +39,8 @@ class PicturesController < ApplicationController
   end
 
   def destroy
-  	@picture.destroy
-  	redirect_to root_path
+    @picture.destroy
+    redirect_to root_path
   end
 
   def upvote
@@ -46,7 +51,7 @@ class PicturesController < ApplicationController
   private
 
   def picture_params
-    params.require(:picture).permit(:title, :description, :image)
+    params.require(:picture).permit(:title, :description, :image, :menu_id)
   end
 
   def find_picture
